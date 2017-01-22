@@ -46,5 +46,13 @@ namespace eShop.Models
         /// Дата добавления товара
         /// </summary>
         public string dateAdd { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string productImage { get; set; }
+        /// <summary>
+        /// Путь к изображению
+        /// </summary>
+        public static string pathToImage = "/Content/Images/";
     }
 }

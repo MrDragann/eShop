@@ -1,4 +1,5 @@
 ﻿@model eShop.Models.ProductModel
+@using eShop.Models;
 
 @{
     ViewBag.Title = "Информация о товаре";
@@ -15,7 +16,7 @@
 
 <div class="row">
     <div class="col-xs-6 col-md-3">
-        <img class="img-thumbnail" alt="250x250" src="" style="width: 250px; height: 250px;">
+        <img class="img-thumbnail" alt="250x250" src="@ProductModel.pathToImage@Html.DisplayFor(model => model.productImage)" style="width: 250px; height: 250px;">
         <h3 >@Html.DisplayFor(model => model.productPrice) руб.</h3>
         <div>
             @Html.ActionLink("В корзину", "", new { id = @Model.productId }, new { @class = "btn btn-primary" })

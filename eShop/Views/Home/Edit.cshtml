@@ -8,8 +8,10 @@
 
 <h2>Редактирование товара</h2>
 <hr />
-
-<form method="post" class="form-horizontal">
+<h2>
+    @Model.productImage хех
+</h2>
+<form method="post" class="form-horizontal" enctype="multipart/form-data">
     <input type="hidden" value="@Model.productId" name="productId" />
     <div class="form-group">
         <label for="productName" class="col-sm-2 control-label">Название</label>
@@ -42,7 +44,7 @@
     </div>
     <div class="form-group">
         <label for="productImage" class="col-sm-2 control-label">Загрузить фото</label>
-        <input type="file" class="form-control" name="productImage" id="producImage" accept="image/jpeg" />
+        <input type="file" class="form-control" name="productImage" id="productImage" accept="image/jpeg" />
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label"></label>

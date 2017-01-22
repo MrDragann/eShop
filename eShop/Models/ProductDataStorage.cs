@@ -29,7 +29,8 @@ namespace eShop.Models
                     productDescription = "Супер современная материнская плата",
                     productPrice = 3500,
                     dateAdd = "2017-01-14",
-                    productTags = "fast, superspeed, ultramodern"
+                    productTags = "fast, superspeed, ultramodern",
+                    productImage = "motherB.jpg"
                 });
             productList.Add(
                 new ProductModel
@@ -40,7 +41,8 @@ namespace eShop.Models
                     productDescription = "Ультрабыстрый флэш-накопитель.",
                     productPrice = 322,
                     dateAdd = "2017-01-19",
-                    productTags = "flash, fast, superspeed"
+                    productTags = "flash, fast, superspeed",
+                    productImage = "flashK.jpg"
                 });
             
         }

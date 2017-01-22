@@ -9,7 +9,7 @@
 <h2>Добавление товара</h2>
 <hr />
 
-<form method="post" class="form-horizontal">
+<form method="post" class="form-horizontal" enctype="multipart/form-data">
     <div class="form-group">
         <label for="productName" class="col-sm-2 control-label">Название</label>
         <input type="text" class="form-control" name="productName" id="productName" placeholder="Производитель и модель" required />
@@ -41,7 +41,7 @@
     </div>
     <div class="form-group">
         <label for="productImage" class="col-sm-2 control-label">Загрузить фото</label>
-        <input type="file" class="form-control" name="productImage" id="producImage" accept="image/jpeg" />
+        <input type="file" class="form-control" name="productImage" id="productImage" accept="image/jpeg" />
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label"></label>

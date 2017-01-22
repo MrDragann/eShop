@@ -32,8 +32,16 @@ namespace eShop.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult AddProduct(ProductModel model)
+        public ActionResult AddProduct(ProductModel model, HttpPostedFileBase image)
         {
+            if (image != null)
+            {
+                ///Извлечение имени файла
+                string fileName = System.IO.Path.GetFileName(image.FileName);
+                model.productImage = fileName;
+                ///Сохранение файла в проекте
+                image.SaveAs(Server.MapPath(ProductModel.pathToImage + fileName));
+            }
             ProductDataStorage.Instance.AddProduct(model);
             return View();
         }
