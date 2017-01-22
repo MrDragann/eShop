@@ -46,5 +46,16 @@ namespace eShop.Controllers
         {
             return View(ProductDataStorage.Instance.GetProductById(id));
         }
+
+        public ActionResult Edit(int id)
+        {
+            return View(ProductDataStorage.Instance.GetProductById(id));
+        }
+        [HttpPost]
+        public ActionResult Edit(int id, ProductModel model)
+        {
+            ProductDataStorage.Instance.UpdateProduct(model);
+            return View("Details", model);
+        }
     }
 }

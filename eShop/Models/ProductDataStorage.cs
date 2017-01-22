@@ -71,5 +71,17 @@ namespace eShop.Models
         {
             return productList.Find(x => x.productId==ProdutId);
         }
+
+        public void UpdateProduct(ProductModel model)
+        {
+            var oldModel = productList.Find(x => x.productId == model.productId);
+            if (oldModel == null)
+            {
+                return;
+            }
+            productList.Remove(oldModel);
+            Instance.productList.Add(model);
+
+        }
     }
 }

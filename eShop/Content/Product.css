@@ -7,3 +7,15 @@ div#productTabs p {
     margin-top: 10px;
 }
 
+div.sortButton {
+    float: right;    
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p.sortButton {
+    float: right; 
+    margin-top: 26px;
+    padding-right: 5px;
+    display: inline;
+}

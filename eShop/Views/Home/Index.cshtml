@@ -4,12 +4,34 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Список товаров</h2>
-
+<div class="row">
+    <div class="col-xs-12 col-md-4">
+        <h2>Список товаров</h2>
+    </div>
+    <div class="col-xs-6 col-md-8">
+        
+        <!-- Split button -->
+        <div class="btn-group sortButton">
+            <button type="button" class="btn btn-default">По умолчанию</button>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Меню с переключением</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">По названию, от А до Я</a></li>
+                <li><a href="#">По названию, от Я до А</a></li>
+                <li><a href="#">По цене, сначала недорогие</a></li>
+                <li><a href="#">По цене, сначала дорогие</a></li>
+            </ul>
+        </div>
+        <p class="sortButton">Сортировка: </p>
+    </div>
+</div>
+<hr />
 
 <div class="row">
     <div class="col-xs-6 col-md-3">
-        <h3>типо фильтры</h3>
+        <h3>тут скоро будут фильтры</h3>
     </div>
 
     <div class="col-xs-12 col-sm-6 col-md-9">
@@ -38,7 +60,7 @@
         </p>
         <p>
             @Html.ActionLink("Подробнее »", "Details", new { id=item.productId }, new { @class= "btn btn-default" })
-            @Html.ActionLink("Редактировать", "Details", new { id = item.productId }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Редактировать", "Edit", new { id = item.productId }, new { @class = "btn btn-warning" })
             @Html.ActionLink("Удалить", "Details", new { id = item.productId }, new { @class = "btn btn-danger" })
         </p>
     </div>
