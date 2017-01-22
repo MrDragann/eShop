@@ -58,6 +58,8 @@ namespace eShop.Models
         /// <param name="model">Объект ProductModel</param>
         public void AddProduct(ProductModel model)
         {
+            ///Создание нового ID на основе уже существующих
+            model.productId = productList.Max(x => x.productId) + 1;
             productList.Add(model);
         }
         /// <summary>

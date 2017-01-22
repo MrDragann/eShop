@@ -17,6 +17,10 @@
     <div class="col-xs-6 col-md-3">
         <img class="img-thumbnail" alt="250x250" src="" style="width: 250px; height: 250px;">
         <h3 >@Html.DisplayFor(model => model.productPrice) руб.</h3>
+        <div>
+            @Html.ActionLink("В корзину", "", new { id = @Model.productId }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Заказать сейчас", "", new { id = Model.productId }, new { @class = "btn btn-danger" })
+        </div>
     </div>
     <div class="col-xs-12 col-md-9">
         <ul class="nav nav-tabs">
@@ -25,9 +29,13 @@
         </ul>
 
         <!-- Tab panes -->
-        <div class="tab-content">
-            <div class="tab-pane active" id="home">@Html.DisplayFor(model => model.productDescription)</div>
-            <div class="tab-pane" id="profile">Тут будут характеристики</div>
+        <div class="tab-content" id="productTabs">
+            <div class="tab-pane active" id="home">
+                <p>@Html.DisplayFor(model => model.productDescription)</p>
+            </div>
+            <div class="tab-pane" id="profile">
+                <p>Тут будут характеристики</p>
+            </div>
         </div>
     </div>
 </div>

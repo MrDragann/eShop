@@ -3,6 +3,7 @@
     display:inline;
 }
 
-#productContainer {
+div#productTabs p {
+    margin-top: 10px;
 }
 
