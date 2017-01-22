@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<eShop.Models.ProductModel>
+@using eShop.Models;
 
 @{
     ViewBag.Title = "Index";
@@ -43,7 +44,7 @@
             @Html.DisplayFor(modelItem => item.productName)
         </h2>
         <p>
-            <img src="~/favicon.ico" alt="хех" class="img-thumbnail">
+            <img src="@ProductModel.pathToImage@item.productImage" alt="хех" class="img-thumbnail" style="width: 100px; height: 100px;">
             @Html.DisplayFor(modelItem => item.dateAdd)
         </p>
         <p>
