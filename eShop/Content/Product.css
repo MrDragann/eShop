@@ -1,0 +1,8 @@
+﻿select#selectedCategory, input#productPrice, input#dateAdd, input#producImage {
+    max-width: 400px;
+    display:inline;
+}
+
+#productContainer {
+}
+

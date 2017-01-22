@@ -1,0 +1,33 @@
+﻿@model eShop.Models.ProductModel
+
+@{
+    ViewBag.Title = "Информация о товаре";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Html.DisplayFor(model => model.selectedCategory)</h2>
+
+<hr />
+
+<h3>@Html.DisplayFor(model => model.productName)</h3>
+
+<hr />
+
+<div class="row">
+    <div class="col-xs-6 col-md-3">
+        <img class="img-thumbnail" alt="250x250" src="" style="width: 250px; height: 250px;">
+        <h3 >@Html.DisplayFor(model => model.productPrice) руб.</h3>
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab">Описание товара</a></li>
+            <li><a href="#profile" data-toggle="tab">Характеристики</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="home">@Html.DisplayFor(model => model.productDescription)</div>
+            <div class="tab-pane" id="profile">Тут будут характеристики</div>
+        </div>
+    </div>
+</div>
