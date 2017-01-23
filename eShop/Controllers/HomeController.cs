@@ -84,5 +84,26 @@ namespace eShop.Controllers
             ProductDataStorage.Instance.UpdateProduct(model);
             return View("Details", model);
         }
+        /// <summary>
+        /// Выбор товара для удаления
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Delete(int id)
+        {
+            return View(ProductDataStorage.Instance.GetProductById(id));
+        }
+        /// <summary>
+        /// Удаление товара из списка
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection form)
+        {
+            ProductDataStorage.Instance.DeleteProduct(id);
+            return RedirectToAction("Index");
+        }
     }
 }

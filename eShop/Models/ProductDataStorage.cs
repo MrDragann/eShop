@@ -61,7 +61,14 @@ namespace eShop.Models
         public void AddProduct(ProductModel model)
         {
             ///Создание нового ID на основе уже существующих
-            model.productId = productList.Max(x => x.productId) + 1;
+            if (productList.Count < 1)
+            {
+                model.productId = 0;
+            }
+            else
+            {
+                model.productId = productList.Max(x => x.productId) + 1;
+            }
             productList.Add(model);
         }
         /// <summary>
@@ -87,7 +94,20 @@ namespace eShop.Models
             }
             productList.Remove(oldModel);
             productList.Add(model);
-
+        }
+        /// <summary>
+        /// Удаление товара
+        /// </summary>
+        /// <param name="ProductId"></param>
+        public void DeleteProduct(int ProductId)
+        {
+            var model = productList.Find(x => x.productId == ProductId);
+            ///Проверка на существование
+            if (model == null)
+            {
+                return;
+            }
+            productList.Remove(model);
         }
     }
 }
