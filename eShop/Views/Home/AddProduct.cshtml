@@ -1,5 +1,5 @@
-﻿@model eShop.Models.ProductModel
-@using eShop.Models;
+﻿@using eShop.Models;
+@model ProductModel
 
 @{
     ViewBag.Title = "Добавление товара";
@@ -41,7 +41,7 @@
     </div>
     <div class="form-group">
         <label for="productImage" class="col-sm-2 control-label">Загрузить фото</label>
-        <input type="file" class="form-control" name="productImage" id="productImage" accept="image/jpeg" />
+        <input type="file" class="form-control" name="productImage" id="productImage" accept="image/jpeg,image/png" />
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label"></label>

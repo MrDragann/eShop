@@ -1,23 +1,23 @@
-﻿@model eShop.Models.ProductModel
-@using eShop.Models;
+﻿@using eShop.Models;
+@model ProductModel
 
 @{
     ViewBag.Title = "Информация о товаре";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Html.DisplayFor(model => model.selectedCategory)</h2>
+<h2>@Model.selectedCategory</h2>
 
 <hr />
 
-<h3>@Html.DisplayFor(model => model.productName)</h3>
+<h3>@Model.productName</h3>
 
 <hr />
 
 <div class="row">
     <div class="col-xs-6 col-md-3">
-        <img class="img-thumbnail" alt="250x250" src="@ProductModel.pathToImage@Html.DisplayFor(model => model.productImage)" style="width: 250px; height: 250px;">
-        <h3 >@Html.DisplayFor(model => model.productPrice) руб.</h3>
+        <img class="img-thumbnail" alt="250x250" src="@ProductModel.pathToImage@Model.productImage" style="width: 250px; height: 250px;">
+        <h3 >@Model.productPrice руб.</h3>
         <div>
             @Html.ActionLink("В корзину", "", new { id = @Model.productId }, new { @class = "btn btn-primary" })
             @Html.ActionLink("Заказать сейчас", "", new { id = Model.productId }, new { @class = "btn btn-danger" })
@@ -32,7 +32,7 @@
         <!-- Tab panes -->
         <div class="tab-content" id="productTabs">
             <div class="tab-pane active" id="home">
-                <p>@Html.DisplayFor(model => model.productDescription)</p>
+                <p>@Model.productDescription</p>
             </div>
             <div class="tab-pane" id="profile">
                 <p>Тут будут характеристики</p>

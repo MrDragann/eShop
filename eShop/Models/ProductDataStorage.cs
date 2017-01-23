@@ -73,16 +73,20 @@ namespace eShop.Models
         {
             return productList.Find(x => x.productId==ProdutId);
         }
-
+        /// <summary>
+        /// Обновление информации о товаре
+        /// </summary>
+        /// <param name="model"></param>
         public void UpdateProduct(ProductModel model)
         {
+            ///Замена старой модели на новую
             var oldModel = productList.Find(x => x.productId == model.productId);
             if (oldModel == null)
             {
                 return;
             }
             productList.Remove(oldModel);
-            Instance.productList.Add(model);
+            productList.Add(model);
 
         }
     }

@@ -47,11 +47,11 @@ namespace eShop.Models
         /// </summary>
         public string dateAdd { get; set; }
         /// <summary>
-        /// 
+        /// Название изображения товара
         /// </summary>
         public string productImage { get; set; }
         /// <summary>
-        /// Путь к изображению
+        /// Путь к изображениям
         /// </summary>
         public static string pathToImage = "/Content/Images/";
     }

@@ -43,7 +43,7 @@ namespace eShop.Controllers
                 productImage.SaveAs(Server.MapPath(ProductModel.pathToImage + fileName));
             }
             ProductDataStorage.Instance.AddProduct(model);
-            return View();
+            return View("Details", model);
         }
         /// <summary>
         /// Вывод информации о товаре по его ID
@@ -54,14 +54,33 @@ namespace eShop.Controllers
         {
             return View(ProductDataStorage.Instance.GetProductById(id));
         }
-
+        /// <summary>
+        /// Редактирование товара основываясь на выбранном ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Edit(int id)
         {
             return View(ProductDataStorage.Instance.GetProductById(id));
         }
+        /// <summary>
+        /// Редактирование информации о товаре
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <param name="productImage"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(int id, ProductModel model)
+        public ActionResult Edit(int id, ProductModel model, HttpPostedFileBase productImage)
         {
+            if (productImage != null)
+            {
+                ///Извлечение имени файла
+                string fileName = System.IO.Path.GetFileName(productImage.FileName);
+                model.productImage = fileName;
+                ///Сохранение файла в проекте
+                productImage.SaveAs(Server.MapPath(ProductModel.pathToImage + fileName));
+            }
             ProductDataStorage.Instance.UpdateProduct(model);
             return View("Details", model);
         }
