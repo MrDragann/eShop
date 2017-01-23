@@ -42,14 +42,17 @@ namespace eShop.Controllers
         [HttpPost]
         public ActionResult AddProduct(ProductModel model, HttpPostedFileBase productImage)
         {
+            string fileName = "unknownProduct.jpg";
             if (productImage != null)
             {
                 ///Извлечение имени файла
-                string fileName = System.IO.Path.GetFileName(productImage.FileName);
+                fileName = System.IO.Path.GetFileName(productImage.FileName);
                 model.productImage = fileName;
                 ///Сохранение файла в проекте
                 productImage.SaveAs(Server.MapPath(ProductModel.pathToImage + fileName));
             }
+            if (productImage == null) model.productImage = "unknownProduct.jpg";
+
             ProductDataStorage.Instance.AddProduct(model);
             return View("Details", model);
         }
