@@ -95,19 +95,6 @@ namespace eShop.Models
             productList.Remove(oldModel);
             productList.Add(model);
         }
-        /// <summary>
-        /// Удаление товара
-        /// </summary>
-        /// <param name="ProductId"></param>
-        public void DeleteProduct(int ProductId)
-        {
-            var model = productList.Find(x => x.productId == ProductId);
-            ///Проверка на существование
-            if (model == null)
-            {
-                return;
-            }
-            productList.Remove(model);
-        }
+        
     }
 }
