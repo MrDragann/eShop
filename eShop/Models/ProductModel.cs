@@ -55,4 +55,12 @@ namespace eShop.Models
         /// </summary>
         public static string pathToImage = "/Content/Images/";
     }
+
+    public enum TypeSort
+    {
+        NameAsc,
+        NameDesc,
+        PriceAsc,
+        PriceDesc
+    }
 }
