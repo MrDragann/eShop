@@ -21,7 +21,7 @@ namespace eShop.Controllers
                 case TypeSort.NameAsc: return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productName));
                 case TypeSort.NameDesc: return View(ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.productName));
                 case TypeSort.PriceAsc: return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productPrice));
-                case TypeSort.PriceDesc: return View(ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.productName));
+                case TypeSort.PriceDesc: return View(ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.productPrice));
             }
             return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productPrice));
             //return View(sort == TypeSort.NameAsc ? ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productName): ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.productName));
@@ -96,12 +96,8 @@ namespace eShop.Controllers
             return View("Details", model);
         }
         
-        public ActionResult Delete(int id)
-        {
-            return View(ProductDataStorage.Instance.GetProductById(id));
-        }
-        [HttpPost]
-        public ActionResult Delete(int id, ProductModel model)
+       
+        public ActionResult DeleteProduct(int id, ProductModel model)
         {
             ProductDataStorage.Instance.DeleteProduct(id);
             return RedirectToAction("Index");

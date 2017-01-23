@@ -10,10 +10,10 @@
         <h2>Список товаров</h2>
     </div>
     <div class="col-xs-6 col-md-8">
-        
+
         <!-- Split button -->
         <div class="btn-group sortButton">
-            
+
             <a class="btn btn-default" href="@Url.Action("index","Home",new { sort = TypeSort.PriceAsc })">По умолчанию</a>
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
@@ -49,35 +49,54 @@
 
     <div class="col-xs-12 col-sm-6 col-md-9">
 
-@foreach (var item in Model) {
-    <div class="col-xs-6 col-sm-4.5" id="productContainer">
-        
-        <h2>
-            @item.productName
-        </h2>
-        <p>
-            <img src="@ProductModel.pathToImage@item.productImage" alt="хех" class="img-thumbnail" style="width: 100px; height: 100px;">
-            @item.dateAdd
-        </p>
-        <p>
-            @item.selectedCategory
-        </p>
-        <p>
-            @item.productDescription
-        </p>
-        <p>
-            @item.productPrice руб.
-        </p>
-        <p>
-            @item.productTags
-        </p>
-        <p>
-            @Html.ActionLink("Подробнее »", "Details", new { id=item.productId }, new { @class= "btn btn-default" })
-            @Html.ActionLink("Редактировать", "Edit", new { id = item.productId }, new { @class = "btn btn-warning" })
-            @Html.ActionLink("Удалить", "Delete", new { id = item.productId }, new { @class = "btn btn-danger" })
-        </p>
-    </div>
-}
+        @foreach (var item in Model)
+        {
+            <div class="col-xs-6 col-sm-4.5" id="productContainer">
+
+                <h2>
+                    @item.productName
+                </h2>
+                <p>
+                    <img src="@ProductModel.pathToImage@item.productImage" alt="хех" class="img-thumbnail" style="width: 100px; height: 100px;">
+                    @item.dateAdd
+                </p>
+                <p>
+                    @item.selectedCategory
+                </p>
+                <p>
+                    @item.productDescription
+                </p>
+                <p>
+                    @item.productPrice руб.
+                </p>
+                <p>
+                    @item.productTags
+                </p>
+                <p>
+                    <a class = "btn btn-default" href="@Url.Action("Details","Home",new { id = item.productId })">Подробнее »</a>
+                    <a class = "btn btn-warning" href="@Url.Action("Edit","Home",new { id = item.productId })">Редактировать</a>
+                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#confirmToDelete">Удалить</button>
+                    @*Html.ActionLink("Удалить", "Delete", new { id = item.productId }, new { @class = "btn btn-danger" })*@
+                </p>
+            </div>
+        }
     </div>
 
+</div>
+
+<!-- Всплывающее окно -->
+<div id="confirmToDelete" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Подтвердите действие</h4>
+            </div>
+            <div class="modal-body">Вы действительно хотите удалить товар?</div>
+            <div class="modal-footer">
+                <a class="btn btn-danger" href="@Url.Action("DeleteProduct","Home",new { id= 1 })">Удалить</a>
+                <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
 </div>
