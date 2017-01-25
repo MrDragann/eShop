@@ -1,4 +1,4 @@
-﻿select#selectedCategory, input#productPrice, input#dateAdd, input#producImage {
+﻿select#selectedCategory, input#productPrice, input#dateAdd, input#productImage {
     max-width: 400px;
     display:inline;
 }
@@ -18,4 +18,9 @@ p.sortButton {
     margin-top: 26px;
     padding-right: 5px;
     display: inline;
+}
+
+a#productTags {
+    border-radius: 15px;
+    margin-bottom: 5px;
 }

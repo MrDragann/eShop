@@ -23,7 +23,7 @@ namespace eShop.Controllers
                 case TypeSort.PriceAsc: return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productPrice));
                 case TypeSort.PriceDesc: return View(ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.productPrice));
             }
-            return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productPrice));
+            return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productName));
             //return View(sort == TypeSort.NameAsc ? ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productName): ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.productName));
         }
         /// <summary>
@@ -63,7 +63,9 @@ namespace eShop.Controllers
         /// <returns></returns>
         public ActionResult Details(int id)
         {
-            return View(ProductDataStorage.Instance.GetProductById(id));
+            ProductModel model = ProductDataStorage.Instance.GetProductById(id);
+            model.collectionsTags = ProductDataStorage.Instance.TagsSplit(model);
+            return View(model);
         }
         /// <summary>
         /// Редактирование товара основываясь на выбранном ID
@@ -96,11 +98,26 @@ namespace eShop.Controllers
             return View("Details", model);
         }
         
-       
+        /// <summary>
+        /// Удаление товара
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public ActionResult DeleteProduct(int id, ProductModel model)
         {
             ProductDataStorage.Instance.DeleteProduct(id);
             return RedirectToAction("Index");
+        }
+        /// <summary>
+        /// Поиск товаров по тегу
+        /// </summary>
+        /// <param name="Tag">Имя тега</param>
+        /// <returns>Список товаров</returns>
+        public ActionResult FindProductByTag(string Tag)
+        {
+            ViewBag.Message = Tag;
+            return View(ProductDataStorage.Instance.GetProductsByTag(Tag));
         }
     }
 }

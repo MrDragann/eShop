@@ -69,6 +69,7 @@ namespace eShop.Models
             {
                 model.productId = productList.Max(x => x.productId) + 1;
             }
+            model.collectionsTags = ProductDataStorage.Instance.TagsSplit(model);
             productList.Add(model);
         }
         /// <summary>
@@ -78,7 +79,7 @@ namespace eShop.Models
         /// <returns></returns>
         public ProductModel GetProductById(int ProdutId)
         {
-            return productList.Find(x => x.productId==ProdutId);
+            return productList.Find(x => x.productId == ProdutId);
         }
         /// <summary>
         /// Обновление информации о товаре
@@ -93,6 +94,7 @@ namespace eShop.Models
                 return;
             }
             productList.Remove(oldModel);
+            model.collectionsTags = ProductDataStorage.Instance.TagsSplit(model);
             productList.Add(model);
         }
         /// <summary>
@@ -108,6 +110,24 @@ namespace eShop.Models
                 return;
             }
             productList.Remove(model);
+        }
+        /// <summary>
+        /// Метод поиска товаров по заданному тегу
+        /// </summary>
+        /// <param name="Tag">Имя тега</param>
+        /// <returns>Список товаров</returns>
+        public List<ProductModel> GetProductsByTag(string Tag)
+        {
+            return productList.FindAll(x => x.collectionsTags.Contains(Tag));
+        }
+        /// <summary>
+        /// Разбиение строки тегов
+        /// </summary>
+        /// <param name="model">Экземпляр ProductModel</param>
+        /// <returns>Коллекцию тегов</returns>
+        public List<string> TagsSplit(ProductModel model)
+        {
+            return model.productTags.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
     }
 }

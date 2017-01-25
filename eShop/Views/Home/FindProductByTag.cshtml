@@ -1,0 +1,42 @@
+﻿@using eShop.Models;
+@model IEnumerable<ProductModel>
+
+@{
+    ViewBag.Title = "FindProductByTag";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Результаты поиска по тегу: @ViewBag.Message</h2>
+<hr />
+
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-6 col-sm-4.5" id="productContainer">
+
+            <h2>
+                @item.productName
+            </h2>
+            <p>
+                <img src="@ProductModel.pathToImage@item.productImage" alt="хех" class="img-thumbnail" style="width: 100px; height: 100px;">
+                @item.dateAdd
+            </p>
+            <p>
+                @item.selectedCategory
+            </p>
+            <p>
+                @item.productDescription
+            </p>
+            <p>
+                @item.productPrice руб.
+            </p>
+            <p>
+                <a class="btn btn-default" href="@Url.Action("Details","Home",new { id = item.productId })">Подробнее »</a>
+                <a class="btn btn-warning" href="@Url.Action("Edit","Home",new { id = item.productId })">Редактировать</a>
+                <button class="btn btn-danger" onclick="Delete(@item.productId)" type="button" data-toggle="modal" data-target="#confirmToDelete">Удалить</button>
+            </p>
+        </div>
+    }
+</div>
+

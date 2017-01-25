@@ -14,7 +14,7 @@
         <!-- Split button -->
         <div class="btn-group sortButton">
 
-            <a class="btn btn-default" href="@Url.Action("index","Home",new { sort = TypeSort.PriceAsc })">По умолчанию</a>
+            <a class="btn btn-default" href="@Url.Action("index","Home")">По умолчанию</a>
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
                 <span class="sr-only">Меню с переключением</span>
@@ -70,13 +70,9 @@
                     @item.productPrice руб.
                 </p>
                 <p>
-                    @item.productTags
-                </p>
-                <p>
                     <a class = "btn btn-default" href="@Url.Action("Details","Home",new { id = item.productId })">Подробнее »</a>
                     <a class = "btn btn-warning" href="@Url.Action("Edit","Home",new { id = item.productId })">Редактировать</a>
-                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#confirmToDelete">Удалить</button>
-                    @*Html.ActionLink("Удалить", "Delete", new { id = item.productId }, new { @class = "btn btn-danger" })*@
+                    <button class="btn btn-danger" onclick="Delete(@item.productId)" type="button" data-toggle="modal" data-target="#confirmToDelete">Удалить</button>
                 </p>
             </div>
         }
@@ -94,9 +90,23 @@
             </div>
             <div class="modal-body">Вы действительно хотите удалить товар?</div>
             <div class="modal-footer">
-                <a class="btn btn-danger" href="@Url.Action("DeleteProduct","Home",new { id= 1 })">Удалить</a>
+                <a class="btn btn-danger" id="deleteConfirmed" href="@Url.Action("DeleteProduct","Home",new { id = 1 })">Удалить</a>
                 <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        
+            var ID;
+            function Delete(id) {
+                ID = id;
+            }
+            $('#deleteConfirmed').click(function () { alert("id = " + ID); });
+        
+
+    </script>
+      
+}

@@ -22,6 +22,12 @@
             @Html.ActionLink("В корзину", "", new { id = @Model.productId }, new { @class = "btn btn-primary" })
             @Html.ActionLink("Заказать сейчас", "", new { id = Model.productId }, new { @class = "btn btn-danger" })
         </div>
+        <hr />
+        @foreach (string tag in Model.collectionsTags)
+        {
+            <a class="btn btn-default btn-sm" id="productTags" href="@Url.Action("FindProductByTag","Home",new { Tag = @tag })">@tag</a>
+        }
+        
     </div>
     <div class="col-xs-12 col-md-9">
         <ul class="nav nav-tabs">
