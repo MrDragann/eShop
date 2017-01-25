@@ -74,7 +74,8 @@ namespace eShop.Controllers
         /// <returns></returns>
         public ActionResult Edit(int id)
         {
-            return View(ProductDataStorage.Instance.GetProductById(id));
+            ProductModel model = ProductDataStorage.Instance.GetProductById(id);
+            return View(model);
         }
         /// <summary>
         /// Редактирование информации о товаре
@@ -94,6 +95,7 @@ namespace eShop.Controllers
                 ///Сохранение файла в проекте
                 productImage.SaveAs(Server.MapPath(ProductModel.pathToImage + fileName));
             }
+            
             ProductDataStorage.Instance.UpdateProduct(model);
             return View("Details", model);
         }

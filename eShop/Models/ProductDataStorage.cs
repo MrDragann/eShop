@@ -93,6 +93,7 @@ namespace eShop.Models
             {
                 return;
             }
+            if (model.productImage == null) { model.productImage = oldModel.productImage; }
             productList.Remove(oldModel);
             model.collectionsTags = ProductDataStorage.Instance.TagsSplit(model);
             productList.Add(model);
