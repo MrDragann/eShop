@@ -24,3 +24,8 @@ a#productTags {
     border-radius: 15px;
     margin-bottom: 5px;
 }
+
+table td a {
+    padding: 8px;
+}
+

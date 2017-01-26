@@ -71,8 +71,6 @@
                 </p>
                 <p>
                     <a class = "btn btn-default" href="@Url.Action("Details","Home",new { id = item.productId })">Подробнее »</a>
-                    <a class = "btn btn-warning" href="@Url.Action("Edit","Home",new { id = item.productId })">Редактировать</a>
-                    <button class="btn btn-danger" onclick="Delete(@item.productId)" type="button" data-toggle="modal" data-target="#confirmToDelete">Удалить</button>
                 </p>
             </div>
         }
@@ -90,7 +88,7 @@
             </div>
             <div class="modal-body">Вы действительно хотите удалить товар?</div>
             <div class="modal-footer">
-                <a class="btn btn-danger" id="deleteConfirmed" href="@Url.Action("DeleteProduct","Home",new { id = 1 })">Удалить</a>
+                <a class="btn btn-danger" id="deleteConfirmed" href="">Удалить</a>
                 <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
             </div>
         </div>
@@ -104,7 +102,7 @@
             function Delete(id) {
                 ID = id;
             }
-            $('#deleteConfirmed').click(function () { alert("id = " + ID); });
+            $('#deleteConfirmed').click(function () { alert("id = " + ID); $.get("HomeController/DeleteProduct") });
         
 
     </script>

@@ -121,5 +121,10 @@ namespace eShop.Controllers
             ViewBag.Message = Tag;
             return View(ProductDataStorage.Instance.GetProductsByTag(Tag));
         }
+
+        public ActionResult Management()
+        {
+            return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productId));
+        }
     }
 }

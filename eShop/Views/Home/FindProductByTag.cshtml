@@ -33,8 +33,6 @@
             </p>
             <p>
                 <a class="btn btn-default" href="@Url.Action("Details","Home",new { id = item.productId })">Подробнее »</a>
-                <a class="btn btn-warning" href="@Url.Action("Edit","Home",new { id = item.productId })">Редактировать</a>
-                <button class="btn btn-danger" onclick="Delete(@item.productId)" type="button" data-toggle="modal" data-target="#confirmToDelete">Удалить</button>
             </p>
         </div>
     }

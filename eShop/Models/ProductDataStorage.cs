@@ -36,7 +36,7 @@ namespace eShop.Models
                 new ProductModel
                 {
                     productId = 2,
-                    productName = "USB FLASH DRIVE 32GB KINGSTON DT 100 G3",
+                    productName = "USB FLASH DRIVE KINGSTON 32GB",
                     selectedCategory = "Накопители",
                     productDescription = "Ультрабыстрый флэш-накопитель.",
                     productPrice = 322,
