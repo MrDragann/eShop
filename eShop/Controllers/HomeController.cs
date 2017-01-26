@@ -9,19 +9,21 @@ namespace eShop.Controllers
 {
     public class HomeController : Controller
     {
+        private int pageSize = 3;
         /// <summary>
         /// Главная страница
         /// </summary>
         /// <returns>Список имеющихся товаров
         /// с сортировкой по цене</returns>
-        public ActionResult Index(TypeSort sort = TypeSort.NameAsc)
+        public ActionResult Index(int pageNum = 0, TypeSort sort = TypeSort.NameAsc)
         {
+            ViewData["PageNum"] = pageNum;
             switch (sort)
             {
-                case TypeSort.NameAsc: return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productName));
-                case TypeSort.NameDesc: return View(ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.productName));
-                case TypeSort.PriceAsc: return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productPrice));
-                case TypeSort.PriceDesc: return View(ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.productPrice));
+                case TypeSort.NameAsc: return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productName).Skip(pageSize * pageNum).Take(pageSize));
+                case TypeSort.NameDesc: return View(ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.productName).Skip(pageSize * pageNum).Take(pageSize));
+                case TypeSort.PriceAsc: return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productPrice).Skip(pageSize * pageNum).Take(pageSize));
+                case TypeSort.PriceDesc: return View(ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.productPrice).Skip(pageSize * pageNum).Take(pageSize));
             }
             return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productName));
             //return View(sort == TypeSort.NameAsc ? ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productName): ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.productName));
@@ -109,7 +111,7 @@ namespace eShop.Controllers
         public ActionResult DeleteProduct(int id, ProductModel model)
         {
             ProductDataStorage.Instance.DeleteProduct(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("Management");
         }
         /// <summary>
         /// Поиск товаров по тегу

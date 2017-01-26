@@ -11,7 +11,7 @@
     </div>
     <div class="col-xs-6 col-md-8">
 
-        <!-- Split button -->
+        <!-- Сортировка -->
         <div class="btn-group sortButton">
 
             <a class="btn btn-default" href="@Url.Action("index","Home")">По умолчанию</a>
@@ -51,60 +51,34 @@
 
         @foreach (var item in Model)
         {
-            <div class="col-xs-6 col-sm-4.5" id="productContainer">
-
-                <h2>
-                    @item.productName
-                </h2>
-                <p>
-                    <img src="@ProductModel.pathToImage@item.productImage" alt="хех" class="img-thumbnail" style="width: 100px; height: 100px;">
-                    @item.dateAdd
-                </p>
-                <p>
-                    @item.selectedCategory
-                </p>
-                <p>
-                    @item.productDescription
-                </p>
-                <p>
-                    @item.productPrice руб.
-                </p>
-                <p>
-                    <a class = "btn btn-default" href="@Url.Action("Details","Home",new { id = item.productId })">Подробнее »</a>
-                </p>
+            <div class="col-xs-6 col-sm-4">
+                <div class="item">
+                    <p>
+                        <img src="@ProductModel.pathToImage@item.productImage" alt="хех" class="img-thumbnail" style="width: 200px; height: 200px;">
+                    </p>
+                    <h5>
+                        @item.productName
+                    </h5>
+                    <p>
+                        @item.productPrice руб.
+                    </p>
+                    <p>
+                        <a class="btn btn-default" href="@Url.Action("Details","Home",new { id = item.productId })">Подробнее »</a>
+                    </p>
+                </div>
             </div>
         }
-    </div>
-
-</div>
-
-<!-- Всплывающее окно -->
-<div id="confirmToDelete" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="close" type="button" data-dismiss="modal">×</button>
-                <h4 class="modal-title">Подтвердите действие</h4>
-            </div>
-            <div class="modal-body">Вы действительно хотите удалить товар?</div>
-            <div class="modal-footer">
-                <a class="btn btn-danger" id="deleteConfirmed" href="">Удалить</a>
-                <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
-            </div>
+        
+        <div id="pagination">
+            <hr />
+            <ul class="pagination">
+                <li><a href="@Url.Action("index","home",new { pageNum = (int)ViewData["PageNum"] - 1 })">«</a></li>
+                <li><a href="@Url.Action("index","home",new { pageNum = 0 })">1</a></li>
+                <li><a href="@Url.Action("index","home",new { pageNum = 1 })">2</a></li>
+                <li><a href="@Url.Action("index","home",new { pageNum = 2 })">3</a></li>
+                <li><a href="@Url.Action("index","home",new { pageNum = (int)ViewData["PageNum"] + 1 })">»</a></li>
+            </ul>
         </div>
     </div>
+    
 </div>
-
-@section Scripts{
-    <script>
-        
-            var ID;
-            function Delete(id) {
-                ID = id;
-            }
-            $('#deleteConfirmed').click(function () { alert("id = " + ID); $.get("HomeController/DeleteProduct") });
-        
-
-    </script>
-      
-}

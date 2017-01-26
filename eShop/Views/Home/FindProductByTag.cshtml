@@ -10,31 +10,24 @@
 <hr />
 
 <div class="row">
-
-    @foreach (var item in Model)
-    {
-        <div class="col-xs-6 col-sm-4.5" id="productContainer">
-
-            <h2>
-                @item.productName
-            </h2>
-            <p>
-                <img src="@ProductModel.pathToImage@item.productImage" alt="хех" class="img-thumbnail" style="width: 100px; height: 100px;">
-                @item.dateAdd
-            </p>
-            <p>
-                @item.selectedCategory
-            </p>
-            <p>
-                @item.productDescription
-            </p>
-            <p>
-                @item.productPrice руб.
-            </p>
-            <p>
-                <a class="btn btn-default" href="@Url.Action("Details","Home",new { id = item.productId })">Подробнее »</a>
-            </p>
-        </div>
-    }
-</div>
+        @foreach (var item in Model)
+        {
+            <div class="col-xs-6 col-sm-3">
+                <div class="item">
+                    <p>
+                        <img src="@ProductModel.pathToImage@item.productImage" alt="хех" class="img-thumbnail" style="width: 200px; height: 200px;">
+                    </p>
+                    <h5>
+                        @item.productName
+                    </h5>
+                    <p>
+                        @item.productPrice руб.
+                    </p>
+                    <p>
+                        <a class="btn btn-default" href="@Url.Action("Details","Home",new { id = item.productId })">Подробнее »</a>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
 

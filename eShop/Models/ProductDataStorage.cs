@@ -26,10 +26,11 @@ namespace eShop.Models
                     productId = 1,
                     productName = "ASUS MAXIMUS VII RANGER",
                     selectedCategory = "Материнские платы",
+                    productTags = "fast, superspeed, ultramodern",
                     productDescription = "Супер современная материнская плата",
                     productPrice = 3500,
                     dateAdd = "2017-01-14",
-                    productTags = "fast, superspeed, ultramodern",
+                    collectionsTags = { "fast", "superspeed", "ultramodern" },
                     productImage = "motherB.jpg"
                 });
             productList.Add(
@@ -38,14 +39,41 @@ namespace eShop.Models
                     productId = 2,
                     productName = "USB FLASH DRIVE KINGSTON 32GB",
                     selectedCategory = "Накопители",
+                    productTags = "flash, fast, superspeed",
                     productDescription = "Ультрабыстрый флэш-накопитель.",
                     productPrice = 322,
                     dateAdd = "2017-01-19",
-                    productTags = "flash, fast, superspeed",
+                    collectionsTags = { "flash", "fast", "superspeed" },
                     productImage = "flashK.jpg"
                 });
-            
+            productList.Add(
+                new ProductModel
+                {
+                    productId = 3,
+                    productName = "A4 Tech A4-KB-28G-1-U",
+                    selectedCategory = "Клавиатуры",
+                    productTags = "a4, keyboard, usb",
+                    productDescription = "Самая надежная клавиатура.",
+                    productPrice = 200,
+                    dateAdd = "2017-01-20",
+                    collectionsTags = { "a4", "keyboard", "usb" },
+                    productImage = "a4Keyb.jpg"
+                });
+            productList.Add(
+                new ProductModel
+                {
+                    productId = 4,
+                    productName = "Logitech G105 USB",
+                    selectedCategory = "Клавиатуры",
+                    productTags = "logitech, keyboard, usb, backlight",
+                    productDescription = "Игровая клавиатура с подцветкой.",
+                    productPrice = 901,
+                    dateAdd = "2017-01-22",
+                    collectionsTags = { "logitech", "keyboard", "usb", "backlight" },
+                    productImage = "logG105Keyb.jpg"
+                });
         }
+        
         /// <summary>
         /// Вывод имеющегося списка товаров
         /// </summary>
@@ -63,7 +91,7 @@ namespace eShop.Models
             ///Создание нового ID на основе уже существующих
             if (productList.Count < 1)
             {
-                model.productId = 0;
+                model.productId = 1;
             }
             else
             {
