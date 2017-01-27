@@ -28,6 +28,7 @@ namespace eShop.Models
                     selectedCategory = "Материнские платы",
                     productTags = "fast, superspeed, ultramodern",
                     productDescription = "Супер современная материнская плата",
+                    productCharacteristics = "Тут будут характеристики",
                     productPrice = 3500,
                     dateAdd = "2017-01-14",
                     collectionsTags = { "fast", "superspeed", "ultramodern" },
@@ -37,10 +38,11 @@ namespace eShop.Models
                 new ProductModel
                 {
                     productId = 2,
-                    productName = "USB FLASH DRIVE KINGSTON 32GB",
+                    productName = "KINGSTON USB FLASH 32GB",
                     selectedCategory = "Накопители",
                     productTags = "flash, fast, superspeed",
                     productDescription = "Ультрабыстрый флэш-накопитель.",
+                    productCharacteristics = "Тут будут характеристики",
                     productPrice = 322,
                     dateAdd = "2017-01-19",
                     collectionsTags = { "flash", "fast", "superspeed" },
@@ -54,6 +56,7 @@ namespace eShop.Models
                     selectedCategory = "Клавиатуры",
                     productTags = "a4, keyboard, usb",
                     productDescription = "Самая надежная клавиатура.",
+                    productCharacteristics = "Тут будут характеристики",
                     productPrice = 200,
                     dateAdd = "2017-01-20",
                     collectionsTags = { "a4", "keyboard", "usb" },
@@ -67,6 +70,7 @@ namespace eShop.Models
                     selectedCategory = "Клавиатуры",
                     productTags = "logitech, keyboard, usb, backlight",
                     productDescription = "Игровая клавиатура с подцветкой.",
+                    productCharacteristics = "Тут будут характеристики",
                     productPrice = 901,
                     dateAdd = "2017-01-22",
                     collectionsTags = { "logitech", "keyboard", "usb", "backlight" },
@@ -157,6 +161,15 @@ namespace eShop.Models
         public List<string> TagsSplit(ProductModel model)
         {
             return model.productTags.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        }
+        /// <summary>
+        /// Метод поиска товаров по категории
+        /// </summary>
+        /// <param name="Category"></param>
+        /// <returns></returns>
+        public List<ProductModel> GetProductsByCategory(string Category)
+        {
+            return productList.FindAll(x => x.selectedCategory.Contains(Category));
         }
     }
 }

@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Результаты поиска по тегу: @ViewBag.Message</h2>
+<h2>Товары из категории: @ViewBag.Message</h2>
 <hr />
 @if (Model.Count() < 1)
 {
@@ -15,6 +15,7 @@
 else
 {
     <div class="row">
+
         @foreach (var item in Model)
         {
             <div class="col-xs-6 col-sm-3">
@@ -36,3 +37,5 @@ else
         }
     </div>
 }
+
+

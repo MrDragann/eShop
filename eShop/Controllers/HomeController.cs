@@ -18,6 +18,8 @@ namespace eShop.Controllers
         public ActionResult Index(int pageNum = 0, TypeSort sort = TypeSort.NameAsc)
         {
             ViewData["PageNum"] = pageNum;
+            ViewData["ItemsCount"] = ProductDataStorage.Instance.GetAllProducts().Count();
+            ViewData["PageSize"] = pageSize;
             switch (sort)
             {
                 case TypeSort.NameAsc: return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productName).Skip(pageSize * pageNum).Take(pageSize));
@@ -44,6 +46,13 @@ namespace eShop.Controllers
         [HttpPost]
         public ActionResult AddProduct(ProductModel model, HttpPostedFileBase productImage)
         {
+            ///Проверка наличия папки изображений
+            string path = Request.MapPath("~/Content/Images");
+            if (!System.IO.Directory.Exists(path))
+            {
+                System.IO.Directory.CreateDirectory(path);
+            }
+            ///Изображение по умолчанию
             string fileName = "unknownProduct.jpg";
             if (productImage != null)
             {
@@ -123,10 +132,24 @@ namespace eShop.Controllers
             ViewBag.Message = Tag;
             return View(ProductDataStorage.Instance.GetProductsByTag(Tag));
         }
-
+        /// <summary>
+        /// Управление товарами
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Management()
         {
             return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productId));
+        }
+
+        /// <summary>
+        /// Поиск товаров по категории
+        /// </summary>
+        /// <param name="Category">Название категории</param>
+        /// <returns>Список товаров</returns>
+        public ActionResult Category(string Category)
+        {
+            ViewBag.Message = Category;
+            return View(ProductDataStorage.Instance.GetProductsByCategory(Category));
         }
     }
 }

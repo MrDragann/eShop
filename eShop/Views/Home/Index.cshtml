@@ -1,4 +1,5 @@
 ﻿@using eShop.Models;
+@using eShop.Helpers;
 @model IEnumerable<ProductModel>
 
 @{
@@ -34,16 +35,16 @@
 <div class="row">
     <div class="col-xs-6 col-md-3">
         <div class="list-group">
-            <a href="#" class="list-group-item active">тут</a>
-            <a href="#" class="list-group-item">скоро</a>
-            <a href="#" class="list-group-item">будут</a>
-            <a href="#" class="list-group-item">фильтры</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item active"> </a>
+            <a href="#" class="list-group-item"> </a>
+            <a href="#" class="list-group-item"> </a>
+            <a href="#" class="list-group-item"> </a>
+            <a href="#" class="list-group-item"> </a>
+            <a href="#" class="list-group-item"> </a>
+            <a href="#" class="list-group-item"> </a>
+            <a href="#" class="list-group-item"> </a>
+            <a href="#" class="list-group-item"> </a>
+            <a href="#" class="list-group-item"> </a>
         </div>
     </div>
 
@@ -72,11 +73,7 @@
         <div id="pagination">
             <hr />
             <ul class="pagination">
-                <li><a href="@Url.Action("index","home",new { pageNum = (int)ViewData["PageNum"] - 1 })">«</a></li>
-                <li><a href="@Url.Action("index","home",new { pageNum = 0 })">1</a></li>
-                <li><a href="@Url.Action("index","home",new { pageNum = 1 })">2</a></li>
-                <li><a href="@Url.Action("index","home",new { pageNum = 2 })">3</a></li>
-                <li><a href="@Url.Action("index","home",new { pageNum = (int)ViewData["PageNum"] + 1 })">»</a></li>
+                @Html.PagingNav((int)ViewData["PageNum"], (int)ViewData["ItemsCount"], (int)ViewData["PageSize"])
             </ul>
         </div>
     </div>

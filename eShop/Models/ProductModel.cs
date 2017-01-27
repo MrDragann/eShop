@@ -36,6 +36,10 @@ namespace eShop.Models
         /// </summary>
         public string productDescription { get; set; }
         /// <summary>
+        /// Характеристики товара
+        /// </summary>
+        public string productCharacteristics { get; set; }
+        /// <summary>
         /// Цена товара
         /// </summary>
         public double productPrice { get; set; }
