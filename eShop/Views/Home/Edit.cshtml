@@ -48,11 +48,11 @@
     </div>
     <div class="form-group">
         <label for="DateAdd" class="col-sm-2 control-label">Дата добавления</label>
-        <input type="date" class="form-control" name="DateAdd" id="DateAdd" value="@Model.DateAdd" />
+        <input type="date" class="form-control" name="DateAdd" id="DateAdd" value="@Model.DateAdd" required/>
     </div>
     <div class="form-group">
         <label for="Image" class="col-sm-2 control-label">Загрузить фото</label>
-        <input type="file" class="form-control" name="Image" id="Image" accept="image/jpeg,image/png" />
+        <input type="file" class="form-control" name="Image" id="Image" accept="image/jpeg,image/png" required value="@Model.Image"/>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label"></label>

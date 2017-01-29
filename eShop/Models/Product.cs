@@ -16,18 +16,6 @@ namespace eShop.Models
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// Список категорий
-        /// </summary>
-        //public static List<string> Category = new List<string>()
-        //{
-        //    "Процессоры",
-        //    "Материнские платы",
-        //    "Память",
-        //    "Видеокарты",
-        //    "Накопители",
-        //    "Клавиатуры"
-        //};
-        /// <summary>
         /// Выбранная категория
         /// </summary>
         public string selectedCategory { get; set; }
@@ -42,7 +30,7 @@ namespace eShop.Models
         /// <summary>
         /// Цена товара
         /// </summary>
-        public double Price { get; set; }
+        public int Price { get; set; }
         /// <summary>
         /// Теги товара
         /// </summary>
@@ -60,7 +48,9 @@ namespace eShop.Models
         /// Путь к изображениям
         /// </summary>
         public static string pathToImage = "/Content/Images/";
-
+        /// <summary>
+        /// Список категорий
+        /// </summary>
         public static List<Category> Category = new List<Category>()
         {
             new Category
