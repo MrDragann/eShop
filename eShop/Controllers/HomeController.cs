@@ -34,7 +34,6 @@ namespace eShop.Controllers
         /// <summary>
         /// Страница добавления товара
         /// </summary>
-        /// <returns>Новый объект модели товаров</returns>
         [HttpGet]
         public ActionResult AddProduct()
         {
@@ -110,7 +109,6 @@ namespace eShop.Controllers
         /// <summary>
         /// Редактирование информации о товаре
         /// </summary>
-        /// <param name="id"></param>
         /// <param name="model"></param>
         /// <param name="Image"></param>
         /// <returns></returns>
@@ -134,7 +132,6 @@ namespace eShop.Controllers
         /// Удаление товара
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="model"></param>
         /// <returns></returns>
         public ActionResult DeleteProduct(int id)
         {

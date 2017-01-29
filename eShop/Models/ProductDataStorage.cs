@@ -6,6 +6,9 @@ using System.Web;
 
 namespace eShop.Models
 {
+    /// <summary>
+    /// Контекст данных для работы с моделями
+    /// </summary>
     public class ProductContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
