@@ -31,9 +31,14 @@
     <div class="form-group">
         <label for="selectedCategory" class="col-sm-2 control-label">Категория</label>
         <select class="form-control" name="selectedCategory" id="selectedCategory">
-            @foreach (string element in ProductModel.productCategory)
+            @foreach (var item in ProductModel.Category)
             {
-                <option>@element</option>
+                <optgroup label="@item.Name">
+                    @foreach (var i in item.Childrens)
+                    {
+                        <option>@i.Name</option>
+                    }
+                </optgroup>
             }
         </select>
     </div>

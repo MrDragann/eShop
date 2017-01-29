@@ -60,6 +60,47 @@ namespace eShop.Models
         /// Путь к изображениям
         /// </summary>
         public static string pathToImage = "/Content/Images/";
+
+        public static List<Category> Category = new List<Category>()
+        {
+            new Category
+            {
+                Id = 1,
+                Name = "Компьютеры",
+                Childrens = new List<Category>()
+                {
+                    new Category
+                    {
+                        Name = "Процессоры"
+                    },
+                    new Category
+                    {
+                        Name = "Материнские платы"
+                    },
+                    new Category
+                    {
+                        Name = "Накопители"
+                    }
+                }
+            },
+            new Category
+            {
+                Id = 2,
+                Name = "Периферия",
+                Childrens = new List<Category>()
+                {     
+                        new Category
+                    {
+                        Name = "Мыши"
+                    },
+                        new Category
+                    {
+                        Name = "Клавиатуры"
+                    }
+                }
+            }
+        };
+        
     }
 
     public enum TypeSort

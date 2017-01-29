@@ -171,5 +171,10 @@ namespace eShop.Models
         {
             return productList.FindAll(x => x.selectedCategory.Contains(Category));
         }
+
+
+        public int PageSize = 3;
+        public int PageNum { get; set; }
+        public int ItemsCount { get; set; }
     }
 }

@@ -9,7 +9,6 @@ namespace eShop.Controllers
 {
     public class HomeController : Controller
     {
-        private int pageSize = 3;
         /// <summary>
         /// Главная страница
         /// </summary>
@@ -17,9 +16,9 @@ namespace eShop.Controllers
         /// с сортировкой по цене</returns>
         public ActionResult Index(int pageNum = 0, TypeSort sort = TypeSort.NameAsc)
         {
-            ViewData["PageNum"] = pageNum;
-            ViewData["ItemsCount"] = ProductDataStorage.Instance.GetAllProducts().Count();
-            ViewData["PageSize"] = pageSize;
+            ProductDataStorage.Instance.PageNum = pageNum;
+            ProductDataStorage.Instance.ItemsCount = ProductDataStorage.Instance.GetAllProducts().Count();
+            int pageSize = ProductDataStorage.Instance.PageSize;
             switch (sort)
             {
                 case TypeSort.NameAsc: return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productName).Skip(pageSize * pageNum).Take(pageSize));

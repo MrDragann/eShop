@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eShop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,14 +19,14 @@ namespace eShop.Helpers
         /// <param name="ItemsCount"></param>
         /// <param name="PageSize"></param>
         /// <returns>Элементы списка с ссылками на страницы</returns>
-        public static MvcHtmlString PagingNav(this HtmlHelper helper, int PageNum, int ItemsCount, int PageSize)
+        public static MvcHtmlString PagingNav(this HtmlHelper helper, int PageNum, int ItemsCount, int PageSize, string Sort)
         {
             /// Получение количества страниц
             int PagesCount = (int)Math.Ceiling((double)ItemsCount / PageSize);
             StringBuilder sb = new StringBuilder();
             if (PageNum > 0)
             {
-                sb.Append("<li>" + helper.ActionLink("«", "Index", new { pageNum = PageNum - 1 }) + "</li>");
+                sb.Append("<li>" + helper.ActionLink("«", "Index", new { pageNum = PageNum - 1, sort = Sort }) + "</li>");
             }
             else
             {
@@ -34,12 +35,12 @@ namespace eShop.Helpers
 
             for(int i = 0; i < PagesCount; i++)
             {
-                sb.Append("<li>" + helper.ActionLink((i+1).ToString(), "Index", new { pageNum = i }) + "</li>");
+                sb.Append("<li>" + helper.ActionLink((i+1).ToString(), "Index", new { pageNum = i, sort = Sort }) + "</li>");
             }
 
             if (PageNum < PagesCount - 1) 
             {
-                sb.Append("<li>" + helper.ActionLink("»", "Index", new { pageNum = PageNum + 1 }) + "</li>");
+                sb.Append("<li>" + helper.ActionLink("»", "Index", new { pageNum = PageNum + 1, sort = Sort }) + "</li>");
             }
             else
             {

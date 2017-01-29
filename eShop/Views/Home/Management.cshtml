@@ -30,7 +30,7 @@
                 <tr id="productRow">
                     <td><a class="btn btn-link" href="@Url.Action("Edit","Home",new { id = item.productId })">Редактировать</a></td>
                     <td><a class="btn btn-link" href="@Url.Action("Details","Home",new { id = item.productId })">Просмотр</a></td>
-                    <td><a class="btn btn-link" href="@Url.Action("DeleteProduct","Home",new { id = item.productId })" onclick="JavaScript:return confirm('Вы действительно хотите удалить товар?')">Удалить</a></td>
+                    <td><a class="btn btn-link" href="@Url.Action("DeleteProduct","Home",new { id = item.productId })" data-toggle="confirmation">Удалить</a></td>
                     <td>@item.productId</td>
                     <td>@item.productName</td>
                     <td>@item.selectedCategory</td>
@@ -42,19 +42,19 @@
     </table>
 </div>
 
-<!-- Всплывающее окно -->
-<div id="confirmToDelete" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="close" type="button" data-dismiss="modal">×</button>
-                <h4 class="modal-title">Подтвердите действие</h4>
-            </div>
-            <div class="modal-body">Вы действительно хотите удалить товар?</div>
-            <div class="modal-footer">
-                <a class="btn btn-danger" id="deleteConfirmed" href="">Удалить</a>
-                <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
-            </div>
-        </div>
-    </div>
-</div>
+@section scripts{
+    <script src="~/Scripts/bootbox.min.js"></script>
+    <script>
+        $(function () {
+            $('[data-toggle=confirmation]').click(function () {
+                var url = $(this).attr('href');
+                bootbox.confirm("Вы действительно хотите удалить товар?", function (e) {
+                    if (e) {
+                        location.href = url;
+                    }
+                });
+                return false;
+            });
+        });
+    </script>    
+}

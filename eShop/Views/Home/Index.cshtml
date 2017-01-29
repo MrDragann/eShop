@@ -73,7 +73,7 @@
         <div id="pagination">
             <hr />
             <ul class="pagination">
-                @Html.PagingNav((int)ViewData["PageNum"], (int)ViewData["ItemsCount"], (int)ViewData["PageSize"])
+                @Html.PagingNav(ProductDataStorage.Instance.PageNum, ProductDataStorage.Instance.ItemsCount, ProductDataStorage.Instance.PageSize, Request.QueryString["sort"])
             </ul>
         </div>
     </div>
