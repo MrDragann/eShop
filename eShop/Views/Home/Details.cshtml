@@ -1,5 +1,5 @@
 ﻿@using eShop.Models;
-@model ProductModel
+@model Product
 
 @{
     ViewBag.Title = "Информация о товаре";
@@ -10,22 +10,22 @@
 
 <hr />
 
-<h3>@Model.productName</h3>
+<h3>@Model.Name</h3>
 
 <hr />
 
 <div class="row">
     <div class="col-xs-6 col-md-3">
-        <img class="img-thumbnail" alt="250x250" src="@ProductModel.pathToImage@Model.productImage" style="width: 250px; height: 250px;">
-        <h3 >@Model.productPrice руб.</h3>
+        <img class="img-thumbnail" alt="250x250" src="@Product.pathToImage@Model.Image" style="width: 250px; height: 250px;">
+        <h3 >@Model.Price руб.</h3>
         <div>
-            @Html.ActionLink("В корзину", "", new { id = @Model.productId }, new { @class = "btn btn-primary" })
-            @Html.ActionLink("Заказать сейчас", "", new { id = Model.productId }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("В корзину", "", new { id = Model.Id }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Заказать сейчас", "", new { id = Model.Id }, new { @class = "btn btn-danger" })
         </div>
         <hr />
         @foreach (string tag in Model.collectionsTags)
         {
-            <a class="btn btn-default btn-sm" id="productTags" href="@Url.Action("FindProductByTag","Home",new { Tag = @tag })">@tag</a>
+            <a class="btn btn-default btn-sm" id="productTags" href="@Url.Action("FindProductByTag","Home",new { Tag = tag })">@tag</a>
         }
         
     </div>
@@ -38,10 +38,10 @@
         <!-- Tab panes -->
         <div class="tab-content" id="productTabs">
             <div class="tab-pane active" id="home">
-                <p>@Model.productDescription</p>
+                <p>@Model.Description</p>
             </div>
             <div class="tab-pane" id="profile">
-                <p>@Model.productCharacteristics</p>
+                <p>@Model.Characteristics</p>
             </div>
         </div>
     </div>

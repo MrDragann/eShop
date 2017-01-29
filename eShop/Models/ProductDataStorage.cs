@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
 namespace eShop.Models
 {
+    public class ProductContext : DbContext
+    {
+        public DbSet<Product> Products { get; set; }
+    }
+
     public class ProductDataStorage
     {
         /// <summary>
@@ -14,67 +20,67 @@ namespace eShop.Models
         /// <summary>
         /// Список имеющихся товаров
         /// </summary>
-        public List<ProductModel> productList = new List<ProductModel>();
+        public List<Product> productList = new List<Product>();
         /// <summary>
         /// Инициализация списка товаров
         /// </summary>
         public ProductDataStorage()
         {
             productList.Add(
-                new ProductModel
+                new Product
                 {
-                    productId = 1,
-                    productName = "ASUS MAXIMUS VII RANGER",
+                    Id = 1,
+                    Name = "ASUS MAXIMUS VII RANGER",
                     selectedCategory = "Материнские платы",
-                    productTags = "fast, superspeed, ultramodern",
-                    productDescription = "Супер современная материнская плата",
-                    productCharacteristics = "Тут будут характеристики",
-                    productPrice = 3500,
-                    dateAdd = "2017-01-14",
+                    Tags = "fast, superspeed, ultramodern",
+                    Description = "Супер современная материнская плата",
+                    Characteristics = "Тут будут характеристики",
+                    Price = 3500,
+                    DateAdd = "2017-01-14",
                     collectionsTags = { "fast", "superspeed", "ultramodern" },
-                    productImage = "motherB.jpg"
+                    Image = "motherB.jpg"
                 });
             productList.Add(
-                new ProductModel
+                new Product
                 {
-                    productId = 2,
-                    productName = "KINGSTON USB FLASH 32GB",
+                    Id = 2,
+                    Name = "KINGSTON USB FLASH 32GB",
                     selectedCategory = "Накопители",
-                    productTags = "flash, fast, superspeed",
-                    productDescription = "Ультрабыстрый флэш-накопитель.",
-                    productCharacteristics = "Тут будут характеристики",
-                    productPrice = 322,
-                    dateAdd = "2017-01-19",
+                    Tags = "flash, fast, superspeed",
+                    Description = "Ультрабыстрый флэш-накопитель.",
+                    Characteristics = "Тут будут характеристики",
+                    Price = 322,
+                    DateAdd = "2017-01-19",
                     collectionsTags = { "flash", "fast", "superspeed" },
-                    productImage = "flashK.jpg"
+                    Image = "flashK.jpg"
                 });
             productList.Add(
-                new ProductModel
+                new Product
                 {
-                    productId = 3,
-                    productName = "A4 Tech A4-KB-28G-1-U",
+                    Id = 3,
+                    Name = "A4 Tech A4-KB-28G-1-U",
                     selectedCategory = "Клавиатуры",
-                    productTags = "a4, keyboard, usb",
-                    productDescription = "Самая надежная клавиатура.",
-                    productCharacteristics = "Тут будут характеристики",
-                    productPrice = 200,
-                    dateAdd = "2017-01-20",
+                    Tags = "a4, keyboard, usb",
+                    Description = "Самая надежная клавиатура.",
+                    Characteristics = "Тут будут характеристики",
+                    Price = 200,
+                    DateAdd = "2017-01-20",
                     collectionsTags = { "a4", "keyboard", "usb" },
-                    productImage = "a4Keyb.jpg"
+                    Image = "a4Keyb.jpg"
                 });
             productList.Add(
-                new ProductModel
+                new Product
                 {
-                    productId = 4,
-                    productName = "Logitech G105 USB",
+                    Id = 4,
+                    Name = "Logitech G105 USB",
                     selectedCategory = "Клавиатуры",
-                    productTags = "logitech, keyboard, usb, backlight",
-                    productDescription = "Игровая клавиатура с подцветкой.",
-                    productCharacteristics = "Тут будут характеристики",
-                    productPrice = 901,
-                    dateAdd = "2017-01-22",
+                    Tags = "logitech, keyboard, usb, backlight",
+                    Description = "Игровая клавиатура с подцветкой.",
+                    Characteristics = "Тут будут характеристики",
+                    Price = 901,
+                    DateAdd = "2017-01-22",
                     collectionsTags = { "logitech", "keyboard", "usb", "backlight" },
-                    productImage = "logG105Keyb.jpg"
+                    Image = "logG105Keyb.jpg"
                 });
         }
         
@@ -82,7 +88,7 @@ namespace eShop.Models
         /// Вывод имеющегося списка товаров
         /// </summary>
         /// <returns>Список товаров</returns>
-        public List<ProductModel> GetAllProducts()
+        public List<Product> GetAllProducts()
         {
             return productList;
         }
@@ -90,16 +96,16 @@ namespace eShop.Models
         /// Добавление нового товара в список
         /// </summary>
         /// <param name="model">Объект ProductModel</param>
-        public void AddProduct(ProductModel model)
+        public void AddProduct(Product model)
         {
             ///Создание нового ID на основе уже существующих
             if (productList.Count < 1)
             {
-                model.productId = 1;
+                model.Id = 1;
             }
             else
             {
-                model.productId = productList.Max(x => x.productId) + 1;
+                model.Id = productList.Max(x => x.Id) + 1;
             }
             model.collectionsTags = ProductDataStorage.Instance.TagsSplit(model);
             productList.Add(model);
@@ -109,23 +115,23 @@ namespace eShop.Models
         /// </summary>
         /// <param name="ProdutId"></param>
         /// <returns></returns>
-        public ProductModel GetProductById(int ProdutId)
+        public Product GetProductById(int ProdutId)
         {
-            return productList.Find(x => x.productId == ProdutId);
+            return productList.Find(x => x.Id == ProdutId);
         }
         /// <summary>
         /// Обновление информации о товаре
         /// </summary>
         /// <param name="model"></param>
-        public void UpdateProduct(ProductModel model)
+        public void UpdateProduct(Product model)
         {
             ///Замена старой модели на новую
-            var oldModel = productList.Find(x => x.productId == model.productId);
+            var oldModel = productList.Find(x => x.Id == model.Id);
             if (oldModel == null)
             {
                 return;
             }
-            if (model.productImage == null) { model.productImage = oldModel.productImage; }
+            if (model.Image == null) { model.Image = oldModel.Image; }
             productList.Remove(oldModel);
             model.collectionsTags = ProductDataStorage.Instance.TagsSplit(model);
             productList.Add(model);
@@ -136,7 +142,7 @@ namespace eShop.Models
         /// <param name="ProductId"></param>
         public void DeleteProduct(int ProductId)
         {
-            var model = productList.Find(x => x.productId == ProductId);
+            var model = productList.Find(x => x.Id == ProductId);
             ///Проверка существования модели
             if (model == null)
             {
@@ -149,7 +155,7 @@ namespace eShop.Models
         /// </summary>
         /// <param name="Tag">Имя тега</param>
         /// <returns>Список товаров</returns>
-        public List<ProductModel> GetProductsByTag(string Tag)
+        public List<Product> GetProductsByTag(string Tag)
         {
             return productList.FindAll(x => x.collectionsTags.Contains(Tag));
         }
@@ -158,16 +164,16 @@ namespace eShop.Models
         /// </summary>
         /// <param name="model">Экземпляр ProductModel</param>
         /// <returns>Коллекцию тегов</returns>
-        public List<string> TagsSplit(ProductModel model)
+        public List<string> TagsSplit(Product model)
         {
-            return model.productTags.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            return model.Tags.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
         /// <summary>
         /// Метод поиска товаров по категории
         /// </summary>
         /// <param name="Category"></param>
         /// <returns></returns>
-        public List<ProductModel> GetProductsByCategory(string Category)
+        public List<Product> GetProductsByCategory(string Category)
         {
             return productList.FindAll(x => x.selectedCategory.Contains(Category));
         }

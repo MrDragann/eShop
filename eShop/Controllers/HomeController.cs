@@ -21,12 +21,12 @@ namespace eShop.Controllers
             int pageSize = ProductDataStorage.Instance.PageSize;
             switch (sort)
             {
-                case TypeSort.NameAsc: return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productName).Skip(pageSize * pageNum).Take(pageSize));
-                case TypeSort.NameDesc: return View(ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.productName).Skip(pageSize * pageNum).Take(pageSize));
-                case TypeSort.PriceAsc: return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productPrice).Skip(pageSize * pageNum).Take(pageSize));
-                case TypeSort.PriceDesc: return View(ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.productPrice).Skip(pageSize * pageNum).Take(pageSize));
+                case TypeSort.NameAsc: return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.Name).Skip(pageSize * pageNum).Take(pageSize));
+                case TypeSort.NameDesc: return View(ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.Name).Skip(pageSize * pageNum).Take(pageSize));
+                case TypeSort.PriceAsc: return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.Price).Skip(pageSize * pageNum).Take(pageSize));
+                case TypeSort.PriceDesc: return View(ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.Price).Skip(pageSize * pageNum).Take(pageSize));
             }
-            return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productName));
+            return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.Name));
             //return View(sort == TypeSort.NameAsc ? ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productName): ProductDataStorage.Instance.GetAllProducts().OrderByDescending(x => x.productName));
         }
         /// <summary>
@@ -35,7 +35,7 @@ namespace eShop.Controllers
         /// <returns>Новый объект модели товаров</returns>
         public ActionResult AddProduct()
         {
-            return View(new ProductModel());
+            return View(new Product());
         }
         /// <summary>
         /// Добавление нового товара в список
@@ -43,7 +43,7 @@ namespace eShop.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult AddProduct(ProductModel model, HttpPostedFileBase productImage)
+        public ActionResult AddProduct(Product model, HttpPostedFileBase productImage)
         {
             ///Проверка наличия папки изображений
             string path = Request.MapPath("~/Content/Images");
@@ -57,11 +57,11 @@ namespace eShop.Controllers
             {
                 ///Извлечение имени файла
                 fileName = System.IO.Path.GetFileName(productImage.FileName);
-                model.productImage = fileName;
+                model.Image = fileName;
                 ///Сохранение файла в проекте
-                productImage.SaveAs(Server.MapPath(ProductModel.pathToImage + fileName));
+                productImage.SaveAs(Server.MapPath(Product.pathToImage + fileName));
             }
-            if (productImage == null) model.productImage = "unknownProduct.jpg";
+            if (productImage == null) model.Image = "unknownProduct.jpg";
 
             ProductDataStorage.Instance.AddProduct(model);
             return View("Details", model);
@@ -73,7 +73,7 @@ namespace eShop.Controllers
         /// <returns></returns>
         public ActionResult Details(int id)
         {
-            ProductModel model = ProductDataStorage.Instance.GetProductById(id);
+            Product model = ProductDataStorage.Instance.GetProductById(id);
             model.collectionsTags = ProductDataStorage.Instance.TagsSplit(model);
             return View(model);
         }
@@ -84,7 +84,7 @@ namespace eShop.Controllers
         /// <returns></returns>
         public ActionResult Edit(int id)
         {
-            ProductModel model = ProductDataStorage.Instance.GetProductById(id);
+            Product model = ProductDataStorage.Instance.GetProductById(id);
             return View(model);
         }
         /// <summary>
@@ -95,15 +95,15 @@ namespace eShop.Controllers
         /// <param name="productImage"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(int id, ProductModel model, HttpPostedFileBase productImage)
+        public ActionResult Edit(int id, Product model, HttpPostedFileBase productImage)
         {
             if (productImage != null)
             {
                 ///Извлечение имени файла
                 string fileName = System.IO.Path.GetFileName(productImage.FileName);
-                model.productImage = fileName;
+                model.Image = fileName;
                 ///Сохранение файла в проекте
-                productImage.SaveAs(Server.MapPath(ProductModel.pathToImage + fileName));
+                productImage.SaveAs(Server.MapPath(Product.pathToImage + fileName));
             }
             
             ProductDataStorage.Instance.UpdateProduct(model);
@@ -116,7 +116,7 @@ namespace eShop.Controllers
         /// <param name="id"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public ActionResult DeleteProduct(int id, ProductModel model)
+        public ActionResult DeleteProduct(int id, Product model)
         {
             ProductDataStorage.Instance.DeleteProduct(id);
             return RedirectToAction("Management");
@@ -137,7 +137,7 @@ namespace eShop.Controllers
         /// <returns></returns>
         public ActionResult Management()
         {
-            return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.productId));
+            return View(ProductDataStorage.Instance.GetAllProducts().OrderBy(x => x.Id));
         }
 
         /// <summary>

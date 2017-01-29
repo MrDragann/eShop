@@ -5,28 +5,28 @@ using System.Web;
 
 namespace eShop.Models
 {
-    public class ProductModel
+    public class Product
     {
         /// <summary>
         /// Идентификатор товара
         /// </summary>
-        public int productId { get; set; }
+        public int Id { get; set; }
         /// <summary>
         /// Имя товара
         /// </summary>
-        public string productName { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// Список категорий
         /// </summary>
-        public static List<string> productCategory = new List<string>()
-        {
-            "Процессоры",
-            "Материнские платы",
-            "Память",
-            "Видеокарты",
-            "Накопители",
-            "Клавиатуры"
-        };
+        //public static List<string> Category = new List<string>()
+        //{
+        //    "Процессоры",
+        //    "Материнские платы",
+        //    "Память",
+        //    "Видеокарты",
+        //    "Накопители",
+        //    "Клавиатуры"
+        //};
         /// <summary>
         /// Выбранная категория
         /// </summary>
@@ -34,28 +34,28 @@ namespace eShop.Models
         /// <summary>
         /// Описание товара
         /// </summary>
-        public string productDescription { get; set; }
+        public string Description { get; set; }
         /// <summary>
         /// Характеристики товара
         /// </summary>
-        public string productCharacteristics { get; set; }
+        public string Characteristics { get; set; }
         /// <summary>
         /// Цена товара
         /// </summary>
-        public double productPrice { get; set; }
+        public double Price { get; set; }
         /// <summary>
         /// Теги товара
         /// </summary>
-        public string productTags { get; set; }
+        public string Tags { get; set; }
         public List<string> collectionsTags = new List<string>();
         /// <summary>
         /// Дата добавления товара
         /// </summary>
-        public string dateAdd { get; set; }
+        public string DateAdd { get; set; }
         /// <summary>
         /// Название изображения товара
         /// </summary>
-        public string productImage { get; set; }
+        public string Image { get; set; }
         /// <summary>
         /// Путь к изображениям
         /// </summary>

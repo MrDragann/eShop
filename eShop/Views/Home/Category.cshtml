@@ -1,5 +1,5 @@
 ﻿@using eShop.Models;
-@model IEnumerable<ProductModel>
+@model IEnumerable<Product>
 
 @{
     ViewBag.Title = "FindProductByTag";
@@ -21,16 +21,16 @@ else
             <div class="col-xs-6 col-sm-3">
                 <div class="item">
                     <p>
-                        <img src="@ProductModel.pathToImage@item.productImage" alt="хех" class="img-thumbnail" style="width: 200px; height: 200px;">
+                        <img src="@Product.pathToImage@item.Image" alt="хех" class="img-thumbnail" style="width: 200px; height: 200px;">
                     </p>
                     <h5>
-                        @item.productName
+                        @item.Name
                     </h5>
                     <p>
-                        @item.productPrice руб.
+                        @item.Price руб.
                     </p>
                     <p>
-                        <a class="btn btn-default" href="@Url.Action("Details","Home",new { id = item.productId })">Подробнее »</a>
+                        <a class="btn btn-default" href="@Url.Action("Details","Home",new { id = item.Id })">Подробнее »</a>
                     </p>
                 </div>
             </div>
