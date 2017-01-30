@@ -23,10 +23,10 @@
             @Html.ActionLink("Заказать сейчас", "", new { id = Model.Id }, new { @class = "btn btn-danger" })
         </div>
         <hr />
-        @*@foreach (string tag in Model.collectionsTags)
-        {*@
-            <a class="btn btn-default btn-sm" id="Tags" href="@Url.Action("FindProductByTag","Home",new { Tag = Model.Tags @*tag*@ })">@Model.Tags@*tag*@</a>
-        @*}*@
+        @foreach (string tag in Product.collectionsTags)
+        {
+            <a class="btn btn-default btn-sm" id="Tags" href="@Url.Action("Tag","Home",new { Tag = @*Model.Tags*@ tag })">@*@Model.Tags*@ @tag</a>
+        }
         
     </div>
     <div class="col-xs-12 col-md-9">

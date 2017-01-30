@@ -83,6 +83,7 @@ namespace eShop.Controllers
             Product product = db.Products.Find(id);
             if (product != null)
             {
+                Product.collectionsTags = ProductDataStorage.Instance.TagsSplit(product);
                 return View(product);
             }
             return HttpNotFound();
@@ -123,8 +124,10 @@ namespace eShop.Controllers
                 ///Сохранение файла в проекте
                 Image.SaveAs(Server.MapPath(Product.pathToImage + fileName));
             }
+            model.Image = db.Products.Find(model.Id).Image;
             db.Entry(model).State = EntityState.Modified;
             db.SaveChanges();
+            Product.collectionsTags = ProductDataStorage.Instance.TagsSplit(model);
             return View("Details", model);
         }
         
@@ -149,11 +152,12 @@ namespace eShop.Controllers
         /// </summary>
         /// <param name="Tag">Имя тега</param>
         /// <returns>Список товаров</returns>
-        //public ActionResult FindProductByTag(string Tag)
-        //{
-        //    ViewBag.Message = Tag;
-        //    return View(ProductDataStorage.Instance.GetProductsByTag(Tag));
-        //}
+        public ActionResult Tag(string Tag)
+        {
+            
+            ViewBag.Message = Tag;
+            return View(db.Products.Where(x=>x.Tags.Contains(Tag)));
+        }
         /// <summary>
         /// Управление товарами
         /// </summary>
@@ -166,17 +170,17 @@ namespace eShop.Controllers
         /// <summary>
         /// Поиск товаров по категории
         /// </summary>
-        /// <param name="Category">Название категории</param>
+        /// <param name = "Category" > Название категории</param>
         /// <returns>Список товаров</returns>
-        //public ActionResult Category(string Category)
-        //{
-        //    ViewBag.Message = Category;
-        //    return View(ProductDataStorage.Instance.GetProductsByCategory(Category));
-        //}
+        public ActionResult Category(string Category)
+        {
+            ViewBag.Message = Category;
+            return View(db.Products.Where(x=>x.selectedCategory==Category));
+        }
         /// <summary>
         /// Закрытие подключения
         /// </summary>
-        /// <param name="disposing"></param>
+        /// <param name = "disposing" ></ param >
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

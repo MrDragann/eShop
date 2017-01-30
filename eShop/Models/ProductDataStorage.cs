@@ -12,6 +12,7 @@ namespace eShop.Models
     public class ProductContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categorys { get; set; }
     }
 
     public class ProductDataStorage

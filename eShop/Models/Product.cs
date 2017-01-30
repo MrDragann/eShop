@@ -35,7 +35,7 @@ namespace eShop.Models
         /// Теги товара
         /// </summary>
         public string Tags { get; set; }
-        public List<string> collectionsTags = new List<string>();
+        public static List<string> collectionsTags = new List<string>();
         /// <summary>
         /// Дата добавления товара
         /// </summary>
