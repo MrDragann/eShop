@@ -16,16 +16,16 @@
 
 <div class="row">
     <div class="col-xs-6 col-md-3">
-        <img class="img-thumbnail" alt="250x250" src="@Product.pathToImage@Model.Image" style="width: 250px; height: 250px;">
+        <img class="img-thumbnail" alt="250x250" src="@ProductData.pathToImage@Model.Image" style="width: 250px; height: 250px;">
         <h3 >@Model.Price руб.</h3>
         <div>
             @Html.ActionLink("В корзину", "", new { id = Model.Id }, new { @class = "btn btn-primary" })
             @Html.ActionLink("Заказать сейчас", "", new { id = Model.Id }, new { @class = "btn btn-danger" })
         </div>
         <hr />
-        @foreach (string tag in Product.collectionsTags)
+        @foreach (string tag in ProductData.collectionsTags)
         {
-            <a class="btn btn-default btn-sm" id="Tags" href="@Url.Action("Tag","Home",new { Tag = @*Model.Tags*@ tag })">@*@Model.Tags*@ @tag</a>
+            <a class="btn btn-default btn-sm" id="Tags" href="@Url.Action("Tag","Home",new { Tag = tag })">@tag</a>
         }
         
     </div>

@@ -35,7 +35,6 @@ namespace eShop.Models
         /// Теги товара
         /// </summary>
         public string Tags { get; set; }
-        public static List<string> collectionsTags = new List<string>();
         /// <summary>
         /// Дата добавления товара
         /// </summary>
@@ -45,59 +44,10 @@ namespace eShop.Models
         /// </summary>
         public string Image { get; set; }
         /// <summary>
-        /// Путь к изображениям
+        /// Id производителя
         /// </summary>
-        public static string pathToImage = "/Content/Images/";
-        /// <summary>
-        /// Список категорий
-        /// </summary>
-        public static List<Category> Category = new List<Category>()
-        {
-            new Category
-            {
-                Id = 1,
-                Name = "Компьютеры",
-                Childrens = new List<Category>()
-                {
-                    new Category
-                    {
-                        Name = "Процессоры"
-                    },
-                    new Category
-                    {
-                        Name = "Материнские платы"
-                    },
-                    new Category
-                    {
-                        Name = "Накопители"
-                    }
-                }
-            },
-            new Category
-            {
-                Id = 2,
-                Name = "Периферия",
-                Childrens = new List<Category>()
-                {     
-                        new Category
-                    {
-                        Name = "Мыши"
-                    },
-                        new Category
-                    {
-                        Name = "Клавиатуры"
-                    }
-                }
-            }
-        };
-        
+        public int? ManufacturerId { get; set; }
+        public Manufacturer Manufacturer { get; set; }
     }
-
-    public enum TypeSort
-    {
-        NameAsc,
-        NameDesc,
-        PriceAsc,
-        PriceDesc
-    }
+    
 }

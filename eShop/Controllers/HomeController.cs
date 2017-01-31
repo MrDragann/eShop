@@ -19,9 +19,9 @@ namespace eShop.Controllers
         /// с сортировкой по цене</returns>
         public ActionResult Index(int pageNum = 0, TypeSort sort = TypeSort.NameAsc)
         {
-            ProductDataStorage.Instance.PageNum = pageNum;
-            ProductDataStorage.Instance.ItemsCount = db.Products.Count();
-            int pageSize = ProductDataStorage.Instance.PageSize;
+            ProductData.Instance.PageNum = pageNum;
+            ProductData.Instance.ItemsCount = db.Products.Count();
+            int pageSize = ProductData.Instance.PageSize;
             switch (sort)
             {
                 case TypeSort.NameAsc: return View(db.Products.OrderBy(x => x.Name).Skip(pageSize * pageNum).Take(pageSize));
@@ -61,7 +61,7 @@ namespace eShop.Controllers
                 fileName = System.IO.Path.GetFileName(Image.FileName);
                 model.Image = fileName;
                 ///Сохранение файла в проекте
-                Image.SaveAs(Server.MapPath(Product.pathToImage + fileName));
+                Image.SaveAs(Server.MapPath(ProductData.pathToImage + fileName));
             }
             if (Image == null) model.Image = "unknownProduct.jpg";
             db.Products.Add(model);
@@ -83,7 +83,7 @@ namespace eShop.Controllers
             Product product = db.Products.Find(id);
             if (product != null)
             {
-                Product.collectionsTags = ProductDataStorage.Instance.TagsSplit(product);
+                ProductData.collectionsTags = ProductData.Instance.TagsSplit(product);
                 return View(product);
             }
             return HttpNotFound();
@@ -122,12 +122,12 @@ namespace eShop.Controllers
                 string fileName = System.IO.Path.GetFileName(Image.FileName);
                 model.Image = fileName;
                 ///Сохранение файла в проекте
-                Image.SaveAs(Server.MapPath(Product.pathToImage + fileName));
+                Image.SaveAs(Server.MapPath(ProductData.pathToImage + fileName));
             }
-            model.Image = db.Products.Find(model.Id).Image;
+            //model.Image = db.Products.Find(model.Id).Image;
             db.Entry(model).State = EntityState.Modified;
             db.SaveChanges();
-            Product.collectionsTags = ProductDataStorage.Instance.TagsSplit(model);
+            ProductData.collectionsTags = ProductData.Instance.TagsSplit(model);
             return View("Details", model);
         }
         
@@ -176,6 +176,10 @@ namespace eShop.Controllers
         {
             ViewBag.Message = Category;
             return View(db.Products.Where(x=>x.selectedCategory==Category));
+        }
+        public ActionResult Manufacturer(int Id)
+        {
+            return View(db.Products.Include(x => x.Manufacturer));
         }
         /// <summary>
         /// Закрытие подключения

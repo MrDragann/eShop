@@ -29,7 +29,7 @@
     <div class="form-group">
         <label for="selectedCategory" class="col-sm-2 control-label">Категория</label>
         <select class="form-control" name="selectedCategory" id="selectedCategory">
-            @foreach (var item in Product.Category)
+            @foreach (var item in ProductData.Category)
             {
                 <optgroup label="@item.Name">
                     @foreach (var i in item.Childrens)
@@ -40,6 +40,16 @@
             }
         </select>
     </div>
+    @*<div class="form-group">
+        <label for="Manufacturer" class="col-sm-2 control-label">Производитель</label>
+        <select class="form-control" name="ManufacturerId" id="Manufacturer">
+            @{ProductContext db = new ProductContext(); }
+            @foreach (var item in  db.Manufacturers)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+    </div>*@
         <div class="form-group">
             <label for="Price" class="col-sm-2 control-label">Цена</label>
             <input type="number" class="form-control" name="Price" id="Price" placeholder="В рублях" required />
