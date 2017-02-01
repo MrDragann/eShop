@@ -211,10 +211,6 @@
     <Compile Include="Migrations\201701312206226_MigrateDB.Designer.cs">
       <DependentUpon>201701312206226_MigrateDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701312249584_MigrateDB1.cs" />
-    <Compile Include="Migrations\201701312249584_MigrateDB1.Designer.cs">
-      <DependentUpon>201701312249584_MigrateDB1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -307,6 +303,7 @@
     <Content Include="Views\Home\Tag.cshtml" />
     <Content Include="Views\Home\Management.cshtml" />
     <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\Home\Manufacturer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -323,9 +320,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701312206226_MigrateDB.resx">
       <DependentUpon>201701312206226_MigrateDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701312249584_MigrateDB1.resx">
-      <DependentUpon>201701312249584_MigrateDB1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

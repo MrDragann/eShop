@@ -177,9 +177,13 @@ namespace eShop.Controllers
             ViewBag.Message = Category;
             return View(db.Products.Where(x=>x.selectedCategory==Category));
         }
-        public ActionResult Manufacturer(int Id)
+        public ActionResult Manufacturer(int? Id)
         {
-            return View(db.Products.Include(x => x.Manufacturer));
+            if (Id == null)
+            {
+                return HttpNotFound();
+            }
+            return View(db.Products.Include(x => x.Manufacturer).Where(x => x.ManufacturerId == Id));
         }
         /// <summary>
         /// Закрытие подключения
